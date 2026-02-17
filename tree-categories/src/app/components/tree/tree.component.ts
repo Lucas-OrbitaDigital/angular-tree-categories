@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { MatTreeNestedDataSource, MatTreeModule } from '@angular/material/tree';
 import { NestedTreeControl } from '@angular/cdk/tree';
 import { MatIconModule } from '@angular/material/icon';
@@ -21,19 +21,18 @@ export class TreeComponent implements OnInit {
   dataSource = new MatTreeNestedDataSource<Tree>();
 
   hasChild = (_: number, node: Tree) => !!node.children && node.children.length > 0;
-  loading: any;
-  errorMessage: any;
-  snackBar: any;
+  loading = signal<boolean>(true);
+  errorMessage = signal<string | null>(null);
 
   ngOnInit(): void {
     this.treeService.getCategories().subscribe({
-      next: (data) => {
+      next: (data: Tree[]) => {
         this.dataSource.data = data;
+        this.loading.set(false);
       },
       error: (err) => {
-        this.errorMessage.set(err.message);
+        this.errorMessage.set(err.message || 'Error de conexión');
         this.loading.set(false);
-        this.snackBar.open(err.message, 'Cerrar', { duration: 5000 });
       }
     });
   }

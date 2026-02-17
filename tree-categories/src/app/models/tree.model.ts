@@ -3,5 +3,4 @@ export interface Tree {
   name: string;
   id_parent: string;
   children?: Tree[];
-  error?: string;
 }

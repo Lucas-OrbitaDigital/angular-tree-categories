@@ -16,12 +16,17 @@ header("Content-Type: application/json; charset=UTF-8");
 try {
     $tree = new Tree();
     $result = $tree->getTree();
+
     if (empty($result)) {
         http_response_code(400);
-        echo json_encode(['error' => $tree->getLastError()]);
-    } else {
-        echo json_encode($result);
+        echo json_encode([
+            'status' => 'error',
+            'message' => $tree->getLastError()
+        ]);
+        exit;
     }
+
+    echo json_encode($result);
 } catch (Exception $e) {
     http_response_code(500);
     echo json_encode(["error" => $e->getMessage()]);

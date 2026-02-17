@@ -1,20 +1,40 @@
-.leaf-icon {
-  color: #bdbdbd; 
+.tree-container {
+  padding: 16px;
+  min-height: 200px;
 }
 
-.node-name {
-  font-family: 'Roboto', sans-serif;
-}
-
-.category-tree [role="group"] {
-  padding-left: 40px;
-}
-
-.node-item:hover, .mat-tree-node:hover {
-  background-color: rgba(0, 0, 0, 0.04);
-  border-radius: 4px;
+.nested-group {
+  margin-left: 32px;
+  border-left: 1px solid #eee;
 }
 
 .tree-invisible {
   display: none;
 }
+
+.error-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px;
+  background: #fff5f5;
+  border: 1px solid #feb2b2;
+  border-radius: 8px;
+  color: #c53030;
+  gap: 12px;
+}
+
+.error-text {
+  text-align: center;
+}
+
+.spinner {
+  animation: rotate 2s linear infinite;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.leaf-icon { color: #bdbdbd; }

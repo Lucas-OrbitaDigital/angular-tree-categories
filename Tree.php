@@ -15,10 +15,8 @@ class Tree
         try {
             $db = Db::getInstance();
             $sql = "SELECT c.id_category as id, c.id_parent, cl.name FROM " . _DB_PREFIX_ . "category c JOIN " . _DB_PREFIX_ . "category_lang cl ON c.id_category = cl.id_category WHERE cl.id_lang = 3";
-            
             $result = $db->executeS($sql);
             $this->data = is_array($result) ? $result : [];
-            // throw new Exception("bla");
         } catch (Exception $e) {
             $this->setLastError($e->getMessage());
             $this->data = [];
