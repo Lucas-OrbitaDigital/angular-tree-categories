@@ -1,0 +1,20 @@
+.leaf-icon {
+  color: #bdbdbd; 
+}
+
+.node-name {
+  font-family: 'Roboto', sans-serif;
+}
+
+.category-tree [role="group"] {
+  padding-left: 40px;
+}
+
+.node-item:hover, .mat-tree-node:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+  border-radius: 4px;
+}
+
+.tree-invisible {
+  display: none;
+}
