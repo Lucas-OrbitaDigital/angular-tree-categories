@@ -3,11 +3,6 @@
   min-height: 200px;
 }
 
-.nested-group {
-  margin-left: 32px;
-  border-left: 1px solid #eee;
-}
-
 .tree-invisible {
   display: none;
 }
@@ -38,3 +33,20 @@
 }
 
 .leaf-icon { color: #bdbdbd; }
+
+.node-item, .mat-tree-node {
+  display: flex;
+  align-items: center;
+  min-height: 40px;
+  width: 100%;
+}
+
+.mat-icon {
+  margin: 0 !important;
+}
+
+.nested-group {
+  margin-left: 19px;
+  border-left: 1px solid #eee;
+  padding-left: 20px;
+}

@@ -1,5 +1,4 @@
 <div class="tree-container">
-
   @if (loading()) {
     <div class="status-message">
       <mat-icon class="spinner">refresh</mat-icon>
@@ -14,14 +13,14 @@
         <strong>Error de conexión</strong>
         <p>{{ errorMessage() }}</p>
       </div>
-      <button mat-stroked-button color="primary" (click)="ngOnInit()">
+      <button mat-stroked-button color="primary" (click)="loadData()">
         Reintentar
       </button>
     </div>
   }
 
   @if (!loading() && !errorMessage()) {
-    <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="category-tree">
+    <mat-tree #tree [dataSource]="dataSource" [childrenAccessor]="childrenAccessor" class="category-tree">
       <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
         <div class="node-item">
           <button mat-icon-button disabled>
@@ -34,12 +33,12 @@
         <div class="mat-tree-node">
           <button mat-icon-button matTreeNodeToggle>
             <mat-icon>
-              {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+              {{ tree.isExpanded(node) ? 'expand_more' : 'chevron_right' }}
             </mat-icon>
           </button>
           <span class="node-name"><strong>{{node.name}}</strong></span>
         </div>
-        <div [class.tree-invisible]="!treeControl.isExpanded(node)" class="nested-group" role="group">
+        <div [class.tree-invisible]="!tree.isExpanded(node)" class="nested-group" role="group">
           <ng-container matTreeNodeOutlet></ng-container>
         </div>
       </mat-nested-tree-node>
